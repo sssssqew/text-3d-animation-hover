@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=VT323&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Playfair Display", serif;
+    text-decoration: none;
+}
+a{
+    color: #fff;
+}
+body, html{
+   background-color: black;
+}
+.menu{
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    user-select: none;
+    counter-reset: menucounter; /* menucounter를 0으로 초기화 */
+}
+.menu-item{
+    position: relative;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+/* .menu-item > div{
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    overflow: hidden;
+} */
+.menu-item::before{
+    counter-increment: menucounter; /* menucounter를 1씩 증가 */
+    content: counters(menucounter, ".", decimal-leading-zero) ; /* 카운터 값을 리스트 앞에 표시 */
+    position: absolute;
+    left: -15px; top: 0;
+    font-size: 10px;
+}
+.menu-item-text{
+    pointer-events: none;
+    display: block;
+    line-height: 1;
+    /* border: 1px solid red; */
+    position: relative;
+    font-size: 2rem;
+}
+.menu-item > div:nth-child(1) span{
+    will-change: transform;
+    transform-style: preserve-3d;
+    transition: .5s;
+    transition-delay: calc(0.05s * var(--index)); /* index : 자바스크립트에서 설정하는 값 */
+    transform-origin: bottom; /* 요소의 아래쪽 중앙을 기준으로 변화 */
+    display: inline-block;
+    /* border: 1px solid yellow; */
+}
+.menu-item > div:nth-child(2) span{ /* html 파일에는 아직 없지만 자바스크립트로 추가될 요소 */
+    will-change: transform;
+    transform-style: preserve-3d;
+    transition: .5s;
+    transition-delay: calc(0.05s * var(--index)); /* index : 자바스크립트에서 설정하는 값 */
+    transform-origin: top; /* 요소의 위쪽 중앙을 기준으로 변화 */
+    display: inline-block;
+    transform: translate3d(0, 100%, 0) rotateX(90deg);
+    /* border: 1px solid yellow; */
+}
+.menu-item:hover > div:nth-child(1) span{ /* 호버하면 요소 바닥을 기준으로 90도 회전하면서 위로 올라감 */
+    transform: translate3d(0, -100%, 0) rotateX(-90deg);
+}
+.menu-item:hover > div:nth-child(2) span{ /* html 파일에는 아직 없지만 자바스크립트로 추가될 요소 */
+    transform: translate3d(0, 0, 0) rotateX(0deg);
+}
+span{
+    font-size: 2rem;
+}
+
+
